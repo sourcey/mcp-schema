@@ -1,14 +1,25 @@
 # mcp-schema
 
-TypeScript types and JSON Schema for MCP server specifications.
+[![CI](https://github.com/sourcey/mcp-schema/actions/workflows/ci.yml/badge.svg)](https://github.com/sourcey/mcp-schema/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/mcp-schema)](https://www.npmjs.com/package/mcp-schema)
+[![license](https://img.shields.io/npm/l/mcp-schema)](https://github.com/sourcey/mcp-schema/blob/main/LICENSE)
 
-Define, validate, and share static snapshots of [Model Context Protocol](https://modelcontextprotocol.io) servers.
+TypeScript types and JSON Schema for [Model Context Protocol](https://modelcontextprotocol.io) server specifications.
 
-## What is an MCP Spec?
+Define, validate, and share static snapshots of MCP servers.
 
-An MCP spec (`mcp.json`) is a static snapshot of an MCP server's capabilities; its tools, resources, and prompts. Think of it as `openapi.json` for MCP servers.
+## MCP Protocol Compatibility
 
-MCP servers describe themselves at runtime via `tools/list`, `resources/list`, and `prompts/list`. An MCP spec captures that information in a versionable, shareable file that can be used for documentation, validation, and code generation.
+Built against the [MCP specification](https://github.com/modelcontextprotocol/specification). Supports protocol versions:
+
+| Protocol Version | Status |
+|------------------|--------|
+| [`2025-11-25`](https://modelcontextprotocol.io/specification/2025-11-25) | Current stable |
+| [`2025-06-18`](https://modelcontextprotocol.io/specification/2025-06-18) | Supported |
+| [`2025-03-26`](https://modelcontextprotocol.io/specification/2025-03-26) | Supported |
+| [`2024-11-05`](https://modelcontextprotocol.io/specification/2024-11-05) | Supported |
+
+Types cover tools (with `inputSchema`, `outputSchema`, and [annotations](https://modelcontextprotocol.io/specification/2025-11-25/server/tools#annotations)), resources, resource templates, prompts, server capabilities, and all three transports (stdio, SSE, streamable HTTP).
 
 ## Install
 
@@ -24,7 +35,8 @@ npm install mcp-schema
 import type { McpSpec, McpTool, McpResource } from "mcp-schema";
 
 const spec: McpSpec = {
-  mcpSpec: "0.1.0",
+  mcpSpec: "0.2.0",
+  mcpVersion: "2025-11-25",
   server: { name: "weather-server", version: "1.0.0" },
   description: "Real-time weather data for any city.",
   tools: [
@@ -76,6 +88,12 @@ if (!valid) {
 }
 ```
 
+## What is mcp.json?
+
+An MCP spec (`mcp.json`) is a static snapshot of an MCP server's capabilities; its tools, resources, and prompts. Think of it as `openapi.json` for MCP servers.
+
+MCP servers describe themselves at runtime via [`tools/list`](https://modelcontextprotocol.io/specification/2025-11-25/server/tools#listing-tools), [`resources/list`](https://modelcontextprotocol.io/specification/2025-11-25/server/resources#listing-resources), and [`prompts/list`](https://modelcontextprotocol.io/specification/2025-11-25/server/prompts#listing-prompts). An MCP spec captures that information in a versionable, shareable file that can be used for documentation, validation, and code generation.
+
 ## mcp.json Format
 
 The root document:
@@ -83,7 +101,7 @@ The root document:
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `mcpSpec` | `string` | yes | Format version (semver) |
-| `mcpVersion` | `string` | no | MCP protocol version |
+| `mcpVersion` | `string` | no | MCP protocol version (e.g., `2025-11-25`) |
 | `server` | `object` | yes | Server name and version |
 | `description` | `string` | no | Extended description (markdown) |
 | `capabilities` | `object` | no | Declared server capabilities |
@@ -164,6 +182,13 @@ The root document:
   ]
 }
 ```
+
+## MCP Specification Resources
+
+- [MCP Specification](https://modelcontextprotocol.io/specification/2025-11-25) (current stable)
+- [Specification repo](https://github.com/modelcontextprotocol/specification) (includes JSON Schema for each protocol version)
+- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) (`@modelcontextprotocol/sdk`)
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) (`mcp` on PyPI)
 
 ## Related
 
