@@ -1,4 +1,4 @@
-# mcp-spec
+# mcp-schema
 
 TypeScript types and JSON Schema for MCP server specifications.
 
@@ -13,7 +13,7 @@ MCP servers describe themselves at runtime via `tools/list`, `resources/list`, a
 ## Install
 
 ```bash
-npm install mcp-spec
+npm install mcp-schema
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ npm install mcp-spec
 ### TypeScript types
 
 ```typescript
-import type { McpSpec, McpTool, McpResource } from "mcp-spec";
+import type { McpSpec, McpTool, McpResource } from "mcp-schema";
 
 const spec: McpSpec = {
   mcpSpec: "0.1.0",
@@ -62,7 +62,7 @@ const spec: McpSpec = {
 ### JSON Schema validation
 
 ```typescript
-import { mcpSpecSchema } from "mcp-spec/schema";
+import { mcpSpecSchema } from "mcp-schema/schema";
 
 // Use with any JSON Schema validator
 import Ajv from "ajv";

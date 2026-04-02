@@ -1,5 +1,5 @@
 {
-  "name": "mcp-spec",
+  "name": "mcp-schema",
   "version": "0.1.0",
   "description": "TypeScript types and JSON Schema for MCP server specifications. Define, validate, and share static snapshots of Model Context Protocol servers.",
   "type": "module",
@@ -50,10 +50,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sourcey/mcp-spec.git"
+    "url": "git+https://github.com/sourcey/mcp-schema.git"
   },
   "bugs": {
-    "url": "https://github.com/sourcey/mcp-spec/issues"
+    "url": "https://github.com/sourcey/mcp-schema/issues"
   },
-  "homepage": "https://github.com/sourcey/mcp-spec"
+  "homepage": "https://github.com/sourcey/mcp-schema"
 }
