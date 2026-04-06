@@ -29,6 +29,9 @@ export type {
   // Root document
   McpSpec,
 
+  // Icon
+  McpIcon,
+
   // Tools
   McpTool,
   ToolAnnotations,
@@ -54,4 +57,4 @@ export type {
 export { mcpSpecSchema } from "./schema.js";
 
 /** Current mcp-spec format version. */
-export const MCP_SPEC_VERSION = "0.2.0";
+export const MCP_SPEC_VERSION = "0.3.0";

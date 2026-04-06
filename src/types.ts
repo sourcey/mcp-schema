@@ -67,6 +67,22 @@ export interface JsonSchema {
 }
 
 // ---------------------------------------------------------------------------
+// Icon
+// ---------------------------------------------------------------------------
+
+/** An icon that can be displayed in a user interface. */
+export interface McpIcon {
+  /** URI pointing to the icon (HTTP/HTTPS URL or data: URI). */
+  src: string;
+  /** MIME type override (e.g., "image/png", "image/svg+xml"). */
+  mimeType?: string;
+  /** Sizes at which the icon can be used (e.g., "48x48", "96x96", "any"). */
+  sizes?: string[];
+  /** Theme this icon is designed for. */
+  theme?: "light" | "dark";
+}
+
+// ---------------------------------------------------------------------------
 // Tool
 // ---------------------------------------------------------------------------
 
@@ -98,6 +114,8 @@ export interface McpTool {
   outputSchema?: JsonSchema;
   /** Behavioral annotations. */
   annotations?: ToolAnnotations;
+  /** Icons for display in client UIs. */
+  icons?: McpIcon[];
   /** Allow vendor extensions. */
   [key: `x-${string}`]: unknown;
 }
@@ -128,6 +146,8 @@ export interface McpResource {
   size?: number;
   /** Resource annotations. */
   annotations?: ResourceAnnotations;
+  /** Icons for display in client UIs. */
+  icons?: McpIcon[];
   /** Allow vendor extensions. */
   [key: `x-${string}`]: unknown;
 }
@@ -144,6 +164,8 @@ export interface McpResourceTemplate {
   mimeType?: string;
   /** Resource annotations. */
   annotations?: ResourceAnnotations;
+  /** Icons for display in client UIs. */
+  icons?: McpIcon[];
   /** Allow vendor extensions. */
   [key: `x-${string}`]: unknown;
 }
@@ -170,6 +192,8 @@ export interface McpPrompt {
   description?: string;
   /** Arguments this prompt accepts. */
   arguments?: McpPromptArgument[];
+  /** Icons for display in client UIs. */
+  icons?: McpIcon[];
   /** Allow vendor extensions. */
   [key: `x-${string}`]: unknown;
 }
@@ -184,6 +208,12 @@ export interface McpServerInfo {
   name: string;
   /** Server version (semver recommended). */
   version: string;
+  /** Human-readable description of the server. */
+  description?: string;
+  /** Server website URL. */
+  websiteUrl?: string;
+  /** Icons for display in client UIs. */
+  icons?: McpIcon[];
 }
 
 /** Declared server capabilities. */

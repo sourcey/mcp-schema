@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import type {
   McpSpec,
+  McpIcon,
   McpTool,
   McpResource,
   McpResourceTemplate,
@@ -62,8 +63,14 @@ describe("type definitions", () => {
   it("McpSpec compiles with all fields", () => {
     const spec: McpSpec = {
       mcpSpec: "0.1.0",
-      mcpVersion: "2025-03-26",
-      server: { name: "test", version: "1.0.0" },
+      mcpVersion: "2025-11-25",
+      server: {
+        name: "test",
+        version: "1.0.0",
+        description: "A test server implementation",
+        websiteUrl: "https://example.com",
+        icons: [{ src: "https://example.com/icon.png" }],
+      },
       description: "A test server",
       capabilities: {
         tools: { listChanged: false },
@@ -96,6 +103,9 @@ describe("type definitions", () => {
             openWorldHint: false,
             title: "Test",
           },
+          icons: [
+            { src: "https://example.com/tool.svg", mimeType: "image/svg+xml", theme: "dark" },
+          ],
         },
       ],
       resources: [
@@ -106,6 +116,7 @@ describe("type definitions", () => {
           mimeType: "application/json",
           size: 1024,
           annotations: { audience: ["user", "assistant"], priority: 0.5 },
+          icons: [{ src: "https://example.com/res.png", sizes: ["48x48", "96x96"] }],
         },
       ],
       resourceTemplates: [
@@ -115,6 +126,7 @@ describe("type definitions", () => {
           description: "A template",
           mimeType: "text/plain",
           annotations: { audience: ["assistant"] },
+          icons: [{ src: "data:image/png;base64,abc" }],
         },
       ],
       prompts: [
@@ -125,6 +137,7 @@ describe("type definitions", () => {
             { name: "input", description: "The input", required: true },
             { name: "style", required: false },
           ],
+          icons: [{ src: "https://example.com/prompt.png" }],
         },
       ],
       $defs: {
@@ -165,6 +178,30 @@ describe("type definitions", () => {
   it("McpPrompt requires only name", () => {
     const prompt: McpPrompt = { name: "minimal" };
     expect(prompt.name).toBe("minimal");
+  });
+
+  it("McpIcon supports all fields", () => {
+    const icon: McpIcon = {
+      src: "https://example.com/icon.png",
+      mimeType: "image/png",
+      sizes: ["48x48", "96x96", "any"],
+      theme: "light",
+    };
+    expect(icon.src).toBe("https://example.com/icon.png");
+    expect(icon.theme).toBe("light");
+  });
+
+  it("McpServerInfo supports description, websiteUrl, and icons", () => {
+    const info: McpServerInfo = {
+      name: "test",
+      version: "1.0.0",
+      description: "A test server",
+      websiteUrl: "https://example.com",
+      icons: [{ src: "https://example.com/icon.png" }],
+    };
+    expect(info.description).toBe("A test server");
+    expect(info.websiteUrl).toBe("https://example.com");
+    expect(info.icons).toHaveLength(1);
   });
 
   it("supports vendor extensions via x- prefix", () => {

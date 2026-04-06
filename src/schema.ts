@@ -29,6 +29,22 @@ const resourceAnnotationsSchema: JsonSchema = {
   },
 };
 
+const iconSchema: JsonSchema = {
+  type: "object",
+  required: ["src"],
+  properties: {
+    src: { type: "string" },
+    mimeType: { type: "string" },
+    sizes: { type: "array", items: { type: "string" } },
+    theme: { type: "string", enum: ["light", "dark"] },
+  },
+};
+
+const iconsProperty: JsonSchema = {
+  type: "array",
+  items: iconSchema,
+};
+
 const jsonSchemaRef: JsonSchema = {
   type: "object",
   description: "A JSON Schema definition.",
@@ -52,6 +68,7 @@ const toolSchema: JsonSchema = {
     },
     outputSchema: jsonSchemaRef,
     annotations: toolAnnotationsSchema,
+    icons: iconsProperty,
   },
 };
 
@@ -65,6 +82,7 @@ const resourceSchema: JsonSchema = {
     mimeType: { type: "string" },
     size: { type: "number" },
     annotations: resourceAnnotationsSchema,
+    icons: iconsProperty,
   },
 };
 
@@ -77,6 +95,7 @@ const resourceTemplateSchema: JsonSchema = {
     description: { type: "string" },
     mimeType: { type: "string" },
     annotations: resourceAnnotationsSchema,
+    icons: iconsProperty,
   },
 };
 
@@ -97,6 +116,7 @@ const promptSchema: JsonSchema = {
     name: { type: "string" },
     description: { type: "string" },
     arguments: { type: "array", items: promptArgumentSchema },
+    icons: iconsProperty,
   },
 };
 
@@ -106,6 +126,9 @@ const serverInfoSchema: JsonSchema = {
   properties: {
     name: { type: "string" },
     version: { type: "string" },
+    description: { type: "string" },
+    websiteUrl: { type: "string" },
+    icons: iconsProperty,
   },
 };
 
