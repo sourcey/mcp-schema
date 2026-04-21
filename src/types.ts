@@ -1,5 +1,5 @@
 /**
- * MCP Spec types — static snapshot format for Model Context Protocol servers.
+ * mcp-schema types — static snapshot format for Model Context Protocol servers.
  *
  * These types mirror the MCP protocol's own introspection responses
  * (tools/list, resources/list, prompts/list) so a snapshot file is

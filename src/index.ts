@@ -1,11 +1,11 @@
 /**
- * mcp-spec — TypeScript types and JSON Schema for MCP server specifications.
+ * mcp-schema — TypeScript types and JSON Schema for MCP server specifications.
  *
  * Define, validate, and share static snapshots of Model Context Protocol servers.
  *
  * @example
  * ```ts
- * import type { McpSpec, McpTool } from "mcp-spec";
+ * import type { McpSpec, McpTool } from "mcp-schema";
  *
  * const spec: McpSpec = {
  *   mcpSpec: "0.1.0",
@@ -56,5 +56,5 @@ export type {
 
 export { mcpSpecSchema } from "./schema.js";
 
-/** Current mcp-spec format version. */
-export const MCP_SPEC_VERSION = "0.3.0";
+/** Current mcp.json format version. */
+export const MCP_SPEC_VERSION = "0.3.1";

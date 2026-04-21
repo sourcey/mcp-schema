@@ -35,7 +35,7 @@ npm install mcp-schema
 import type { McpSpec, McpTool, McpResource } from "mcp-schema";
 
 const spec: McpSpec = {
-  mcpSpec: "0.2.0",
+  mcpSpec: "0.3.1",
   mcpVersion: "2025-11-25",
   server: { name: "weather-server", version: "1.0.0" },
   description: "Real-time weather data for any city.",

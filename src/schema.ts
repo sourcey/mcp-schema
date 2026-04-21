@@ -174,7 +174,7 @@ const transportSchema: JsonSchema = {
  * @example
  * ```ts
  * import Ajv from "ajv";
- * import { mcpSpecSchema } from "mcp-spec/schema";
+ * import { mcpSpecSchema } from "mcp-schema/schema";
  *
  * const ajv = new Ajv();
  * const validate = ajv.compile(mcpSpecSchema);
