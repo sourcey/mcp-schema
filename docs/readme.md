@@ -197,7 +197,7 @@ The root document:
 
 ## Related
 
-- [mcp-parser](https://github.com/sourcey/mcp-parser): parse, validate, snapshot, and generate from MCP specs
+- [mcp-parser](https://github.com/sourcey/mcp-parser): snapshot live MCP servers, parse and validate `mcp.json`, and generate markdown/docs outputs
 - [sourcey](https://github.com/sourcey/sourcey): generate documentation from MCP specs, OpenAPI, and markdown
 
 ## License

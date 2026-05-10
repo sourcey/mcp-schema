@@ -72,7 +72,7 @@ The repository points to these related resources:
 - Specification repository
 - TypeScript SDK
 - Python SDK
-- `mcp-parser` for parsing, validation, snapshotting, and generation from MCP specs
+- `mcp-parser` for snapshotting live MCP servers, parsing and validating `mcp.json`, and generating markdown/docs outputs
 - `sourcey` for documentation generation from MCP specs, OpenAPI, and markdown
 
 Use those upstream references when you need protocol semantics or adjacent tooling beyond the package scope documented here.
