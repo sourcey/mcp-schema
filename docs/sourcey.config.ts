@@ -1,4 +1,4 @@
-import { defineConfig } from "sourcey";
+import { defineConfig, markdown } from "sourcey";
 
 export default defineConfig({
   prettyUrls: "strip",
@@ -24,16 +24,18 @@ export default defineConfig({
       {
         tab: "Documentation",
         slug: "",
-        groups: [
-          {
-            group: "Overview",
-            pages: ["index", "readme", "getting-started"],
-          },
-          {
-            group: "Reference",
-            pages: ["schema-reference", "typescript", "usage", "changelog"],
-          },
-        ],
+        source: markdown({
+          groups: [
+            {
+              group: "Overview",
+              pages: ["index", "readme", "getting-started"],
+            },
+            {
+              group: "Reference",
+              pages: ["schema-reference", "typescript", "usage", "changelog"],
+            },
+          ],
+        }),
       },
     ],
   },
