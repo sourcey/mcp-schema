@@ -270,8 +270,22 @@ export interface McpSpec {
   /** MCP Spec format version (semver). */
   mcpSpec: string;
 
-  /** MCP protocol version this snapshot was taken from. */
+  /**
+   * MCP protocol revision this snapshot was taken from, as `YYYY-MM-DD`.
+   *
+   * This is the revision the server answered with, not the one the client
+   * asked for.
+   */
   mcpVersion?: string;
+
+  /**
+   * Every protocol revision the server reports it supports, as `YYYY-MM-DD`.
+   *
+   * The protocol treats version breadth as a set rather than a single value: a
+   * server may speak several revisions, and from `2026-07-28` it advertises them
+   * through `server/discover`. Absent when the server reported no set.
+   */
+  mcpVersions?: string[];
 
   /** Server implementation info. */
   server: McpServerInfo;

@@ -16,7 +16,7 @@ The root document fields documented in the repository are:
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `mcpSpec` | `string` | yes | Format version (semver) |
-| `mcpVersion` | `string` | no | MCP protocol version such as `2025-11-25` |
+| `mcpVersion` | `string` | no | MCP protocol revision such as `2025-11-25`, validated as `YYYY-MM-DD` |
 | `server` | `object` | yes | Server name and version |
 | `description` | `string` | no | Extended description in markdown |
 | `capabilities` | `object` | no | Declared server capabilities |

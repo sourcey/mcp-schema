@@ -16,14 +16,11 @@ The package is designed for projects that need to define, validate, and share st
 
 ## Protocol compatibility
 
-Built against the MCP specification and documented support matrix in the repository README.
-
-| Protocol Version | Status |
-| --- | --- |
-| `2025-11-25` | Current stable |
-| `2025-06-18` | Supported |
-| `2025-03-26` | Supported |
-| `2024-11-05` | Supported |
+An `mcp.json` document describes a server's static surface rather than the wire
+protocol, so this package is revision-independent. `mcpVersion` records the
+revision a server answered with and `mcpVersions` the set it supports; both are
+validated as `YYYY-MM-DD` shapes, so documents produced against a revision newer
+than this package still validate.
 
 ## Package boundaries
 

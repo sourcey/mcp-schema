@@ -53,16 +53,16 @@ describe("mcpSpecSchema", () => {
 describe("type definitions", () => {
   it("McpSpec compiles with minimal fields", () => {
     const spec: McpSpec = {
-      mcpSpec: "0.1.0",
+      mcpSpec: MCP_SPEC_VERSION,
       server: { name: "test", version: "1.0.0" },
     };
-    expect(spec.mcpSpec).toBe("0.1.0");
+    expect(spec.mcpSpec).toBe(MCP_SPEC_VERSION);
     expect(spec.server.name).toBe("test");
   });
 
   it("McpSpec compiles with all fields", () => {
     const spec: McpSpec = {
-      mcpSpec: "0.1.0",
+      mcpSpec: MCP_SPEC_VERSION,
       mcpVersion: "2025-11-25",
       server: {
         name: "test",

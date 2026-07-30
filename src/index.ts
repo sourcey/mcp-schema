@@ -57,4 +57,4 @@ export type {
 export { mcpSpecSchema } from "./schema.js";
 
 /** Current mcp.json format version. */
-export const MCP_SPEC_VERSION = "0.3.1";
+export const MCP_SPEC_VERSION = "0.3.2";

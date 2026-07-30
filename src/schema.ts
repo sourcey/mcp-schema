@@ -29,6 +29,17 @@ const resourceAnnotationsSchema: JsonSchema = {
   },
 };
 
+/**
+ * A protocol revision is a date, so the shape is checked rather than the value.
+ * An unknown but well-formed revision must validate: new revisions ship without
+ * this package changing.
+ */
+const protocolVersionSchema: JsonSchema = {
+  type: "string",
+  pattern: "^\\d{4}-\\d{2}-\\d{2}$",
+  description: "MCP protocol revision (YYYY-MM-DD).",
+};
+
 const iconSchema: JsonSchema = {
   type: "object",
   required: ["src"],
@@ -189,9 +200,11 @@ export const mcpSpecSchema: JsonSchema = {
       type: "string",
       description: "MCP Spec format version (semver).",
     },
-    mcpVersion: {
-      type: "string",
-      description: "MCP protocol version this snapshot was taken from.",
+    mcpVersion: protocolVersionSchema,
+    mcpVersions: {
+      type: "array",
+      items: protocolVersionSchema,
+      description: "Every protocol revision the server reports it supports.",
     },
     server: serverInfoSchema,
     description: {

@@ -2,6 +2,17 @@
 
 All notable changes to `mcp-schema` are documented here. Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow [SemVer](https://semver.org).
 
+## [0.3.2] - 2026-07-30
+
+### Added
+- `mcpVersions` records every protocol revision a server reports it supports, since the protocol treats version breadth as a set.
+- Conformance tests that compile the schema with a real validator and check it against a production `mcp.json`.
+
+### Changed
+- `mcpVersion` and `mcpVersions` are validated as `YYYY-MM-DD` shapes rather than against a list of known revisions, so a document produced against a newer protocol revision still validates.
+- `MCP_SPEC_VERSION` advanced to `"0.3.2"` to match the package.
+- README and docs describe what the format does instead of claiming protocol-version support the package does not implement.
+
 ## [0.3.1] - 2026-04-21
 
 ### Changed

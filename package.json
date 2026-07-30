@@ -1,6 +1,6 @@
 {
   "name": "mcp-schema",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "TypeScript types and JSON Schema for MCP server specifications. Define, validate, and share static snapshots of Model Context Protocol servers.",
   "type": "module",
   "engines": {
@@ -30,6 +30,7 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
+    "ajv": "^8.20.0",
     "sourcey": "^3.6.0",
     "typescript": "^5.9.0",
     "vitest": "^3.2.0"

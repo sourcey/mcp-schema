@@ -13,18 +13,27 @@ TypeScript types and JSON Schema for [Model Context Protocol](https://modelconte
 
 Define, validate, and share static snapshots of MCP servers.
 
-## MCP Protocol Compatibility
+## What this describes
 
-Built against the [MCP specification](https://github.com/modelcontextprotocol/specification). Supports protocol versions:
+An `mcp.json` document is a static description of an MCP server's surface, not a
+wire protocol. This package is therefore revision-independent: it records which
+protocol revision a snapshot came from without being tied to any one of them.
 
-| Protocol Version | Status |
-|------------------|--------|
-| [`2025-11-25`](https://modelcontextprotocol.io/specification/2025-11-25) | Current stable |
-| [`2025-06-18`](https://modelcontextprotocol.io/specification/2025-06-18) | Supported |
-| [`2025-03-26`](https://modelcontextprotocol.io/specification/2025-03-26) | Supported |
-| [`2024-11-05`](https://modelcontextprotocol.io/specification/2024-11-05) | Supported |
+`mcpVersion` holds the revision the server answered with, and `mcpVersions` holds
+the set it reports it supports. Both are validated as `YYYY-MM-DD` shapes rather
+than against a list of known revisions, so a document produced against a
+revision newer than this package still validates.
 
-Types cover tools (with `inputSchema`, `outputSchema`, and [annotations](https://modelcontextprotocol.io/specification/2025-11-25/server/tools#annotations)), resources, resource templates, prompts, server capabilities, and all three transports (stdio, SSE, streamable HTTP).
+Types cover tools (with `inputSchema`, `outputSchema`, and
+[annotations](https://modelcontextprotocol.io/specification/2025-11-25/server/tools#annotations)),
+resources, resource templates, prompts, icons, server capabilities, and all three
+transports (stdio, Streamable HTTP, and the specification-deprecated HTTP+SSE).
+
+Deliberately out of scope: JSON-RPC envelopes, content types, sessions, and the
+client features the specification deprecated in
+[`2026-07-28`](https://modelcontextprotocol.io/specification/2026-07-28)
+(roots, sampling, logging). A snapshot describes what a server offers, not a
+conversation with it.
 
 ## Install
 
@@ -106,7 +115,8 @@ The root document:
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `mcpSpec` | `string` | yes | Format version (semver) |
-| `mcpVersion` | `string` | no | MCP protocol version (e.g., `2025-11-25`) |
+| `mcpVersion` | `string` | no | Protocol revision the server answered with, `YYYY-MM-DD` |
+| `mcpVersions` | `string[]` | no | Every protocol revision the server reports it supports |
 | `server` | `object` | yes | Server name and version |
 | `description` | `string` | no | Extended description (markdown) |
 | `capabilities` | `object` | no | Declared server capabilities |
@@ -190,7 +200,7 @@ The root document:
 
 ## MCP Specification Resources
 
-- [MCP Specification](https://modelcontextprotocol.io/specification/2025-11-25) (current stable)
+- [MCP Specification](https://modelcontextprotocol.io/specification/2026-07-28) (current revision)
 - [Specification repo](https://github.com/modelcontextprotocol/specification) (includes JSON Schema for each protocol version)
 - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) (`@modelcontextprotocol/sdk`)
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk) (`mcp` on PyPI)
