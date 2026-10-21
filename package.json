@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "ajv": "^8.20.0",
-    "sourcey": "^3.6.11",
+    "sourcey": "^3.8.2",
     "typescript": "^7.0.2",
     "vitest": "^5.0.2"
   },
