@@ -1,6 +1,7 @@
 import { defineConfig, markdown } from "sourcey";
 
 export default defineConfig({
+  name: "mcp-schema",
   prettyUrls: "strip",
   theme: {
     name: "minimal",
@@ -14,8 +15,6 @@ export default defineConfig({
       mono: "ui-monospace, SFMono-Regular, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace",
     },
   },
-  logo: "https://github.com/sourcey/mcp-schema/actions/workflows/ci.yml/badge.svg",
-  favicon: "https://github.com/fluidicon.png",
   repo: "https://github.com/sourcey/mcp-schema",
   editBranch: "main",
   editBasePath: "docs",
