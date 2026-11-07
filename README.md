@@ -8,7 +8,58 @@ TypeScript types and JSON Schema for [Model Context Protocol](https://modelconte
 
 Define, validate, and share static snapshots of MCP servers.
 
-## What this describes
+## Agent Plugins configuration and server snapshots
+
+This package describes two distinct documents:
+
+| Contract | Exports | Purpose |
+| --- | --- | --- |
+| Server snapshot | `McpSpec`, `mcpSpecSchema` | A server's tools, resources, prompts, and connection hints |
+| [Agent Plugins 1.0.0 MCP configuration](https://agent-plugins.org/specification#721-discovery-and-configuration) | `AgentPluginsMcpConfig`, `AgentPluginsMcpServer`, `agentPluginsMcpSchema` | A plugin's named server connections in root `mcp.json` |
+
+Both have been called `mcp.json`. Use a filename such as `api.snapshot.json` for
+snapshots when working with an Agent Plugin. The standard plugin configuration
+requires `$schema` and `mcpServers`; it does not contain introspection results.
+
+```ts
+import { agentPluginsMcpSchema, AGENT_PLUGINS_MCP_SCHEMA_URL } from "mcp-schema/agent-plugins";
+import type { AgentPluginsMcpConfig } from "mcp-schema/agent-plugins";
+import { Ajv2020 } from "ajv/dist/2020.js";
+
+const config: AgentPluginsMcpConfig = {
+  $schema: "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  mcpServers: {
+    api: { type: "streamable-http", url: "https://example.com/mcp" },
+    local: { type: "stdio", command: "./bin/server", cwd: "${PLUGIN_ROOT}" },
+  },
+};
+const validate = new Ajv2020().compile(agentPluginsMcpSchema);
+console.log(validate(config), AGENT_PLUGINS_MCP_SCHEMA_URL);
+```
+
+These exports are also available from the main entrypoint. The official schema
+is bundled locally, and its TypeScript types are generated from those exact
+schema bytes. It is a closed union of `stdio`, `streamable-http`, and legacy
+`sse`. The normative specification additionally defines URL/header semantics,
+filesystem containment, variable expansion, and failure boundaries that a JSON
+Schema alone cannot enforce. [mcp-parser](https://github.com/sourcey/mcp-parser)
+implements those configuration checks and named-server snapshotting.
+
+### Maintaining the upstream contract
+
+The published [canonical schema](https://agent-plugins.org/schemas/1.0.0/mcp.schema.json)
+is the authority in `src/agent-plugins/mcp.schema.json`. Its generated runtime
+export and types must pass `npm run check:agent-plugins` in CI. Run
+`npm run check:agent-plugins -- --upstream` to compare with the canonical online
+schema and detect a newer release on the published specification page. After
+adopting a published specification release, review its normative
+semantic changes in mcp-parser, update the canonical bytes, regenerate with
+`npm run generate:agent-plugins`, and test both packages together. A working
+draft is not automatically a supported release. No schema is downloaded at
+runtime. Agent Plugins schema material is Apache-2.0 licensed; its license and
+attribution are distributed with the package.
+
+## What the snapshot describes
 
 An `mcp.json` document is a static description of an MCP server's surface, not a
 wire protocol. This package is therefore revision-independent: it records which

@@ -2,6 +2,13 @@
 
 All notable changes to `mcp-schema` are documented here. Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow [SemVer](https://semver.org).
 
+## [0.3.3] - 2026-11-08
+
+### Added
+- Official Agent Plugins 1.0.0 MCP configuration schema, generated TypeScript configuration/server types, and a dedicated `mcp-schema/agent-plugins` entrypoint. The server snapshot contract remains separate.
+- `transport.cwd` for stdio snapshot connection hints.
+- `transport.headers`: the request headers an `sse` or `streamable-http` server expects, such as `Authorization: Bearer YOUR_TOKEN`, as placeholders a client fills in (like `env` for `stdio`).
+
 ## [0.3.2] - 2026-07-30
 
 ### Added

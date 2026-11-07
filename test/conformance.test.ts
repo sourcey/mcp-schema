@@ -43,6 +43,13 @@ describe("mcpSpecSchema conformance", () => {
     expect(validate({ ...minimal, mcpVersions: ["2025-11-25", "latest"] })).toBe(false);
   });
 
+  it("accepts an HTTP transport's header placeholders and rejects a non-string header", () => {
+    const validate = compile();
+    const transport = { type: "streamable-http", url: "https://tasks.example/api/v2/mcp" };
+    expect(validate({ ...minimal, transport: { ...transport, headers: { Authorization: "Bearer YOUR_TOKEN" } } })).toBe(true);
+    expect(validate({ ...minimal, transport: { ...transport, headers: { Authorization: 1 } } })).toBe(false);
+  });
+
   it("accepts vendor extensions at the root", () => {
     const validate = compile();
     expect(

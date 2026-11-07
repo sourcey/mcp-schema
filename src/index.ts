@@ -56,5 +56,8 @@ export type {
 
 export { mcpSpecSchema } from "./schema.js";
 
+export { agentPluginsMcpSchema, AGENT_PLUGINS_MCP_SCHEMA_URL } from "./agent-plugins.js";
+export type { AgentPluginsMcpConfig, AgentPluginsMcpServer } from "./agent-plugins.js";
+
 /** Current mcp.json format version. */
 export const MCP_SPEC_VERSION = "0.3.2";

@@ -9,6 +9,16 @@ The package is designed for projects that need to define, validate, and share st
 
 ## What it provides
 
+The package also exports the official Agent Plugins 1.0.0 MCP configuration
+schema and generated `AgentPluginsMcpConfig` / `AgentPluginsMcpServer` types via
+`mcp-schema/agent-plugins` and the main entrypoint. That configuration uses
+`$schema` and `mcpServers` to connect to servers; the `McpSpec` snapshot below
+records their advertised surfaces. Use separate filenames when authoring a
+plugin: root `mcp.json` for its configuration and `api.snapshot.json` for a
+snapshot. See the [README](https://github.com/sourcey/mcp-schema#agent-plugins-configuration-and-server-snapshots)
+for validation, upstream maintenance, and the semantic checks implemented by
+mcp-parser.
+
 - TypeScript types for MCP server specifications
 - JSON Schema for validator-based checks
 - Coverage for tools, resources, resource templates, prompts, capabilities, and transports
@@ -37,6 +47,7 @@ than this package still validate.
 | --- | --- |
 | `mcp-schema` | TypeScript types such as `McpSpec`, `McpTool`, and `McpResource` |
 | `mcp-schema/schema` | JSON Schema export for validation workflows |
+| `mcp-schema/agent-plugins` | Official plugin MCP configuration schema and generated types |
 
 ## In this documentation
 
