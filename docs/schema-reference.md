@@ -5,7 +5,12 @@ description: Understand the mcp.json root document and the main schema sections 
 
 ## What is `mcp.json`?
 
-An MCP spec (`mcp.json`) is a static snapshot of an MCP server's capabilities: its tools, resources, and prompts. In the repository's own framing, it fills a role similar to `openapi.json` for MCP servers.
+A server snapshot (`McpSpec`, often called `mcp.json`) records an MCP server's
+tools, resources, and prompts. [Agent Plugins](https://agent-plugins.org/specification)
+uses root `mcp.json` for a different contract: a `$schema` / `mcpServers`
+connection configuration. That standard schema is exported separately as
+`agentPluginsMcpSchema`. Use a filename such as `api.snapshot.json` for the
+snapshot described on this page when working with a plugin.
 
 MCP servers describe themselves at runtime through listing endpoints such as `tools/list`, `resources/list`, and `prompts/list`. `mcp-schema` captures that information in a versionable, shareable document that can be used for documentation, validation, and code generation.
 

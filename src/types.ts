@@ -242,8 +242,16 @@ export interface McpTransport {
   args?: string[];
   /** Environment variables (stdio). */
   env?: Record<string, string>;
+  /** Working directory (stdio). */
+  cwd?: string;
   /** Server URL (sse / streamable-http). */
   url?: string;
+  /**
+   * Request headers the server expects (sse / streamable-http), such as
+   * `Authorization: Bearer YOUR_TOKEN`. Like `env`, these are placeholders a
+   * client fills in, never captured credentials.
+   */
+  headers?: Record<string, string>;
 }
 
 // ---------------------------------------------------------------------------
@@ -253,7 +261,9 @@ export interface McpTransport {
 /**
  * An MCP Spec document — a static snapshot of an MCP server's capabilities.
  *
- * This is the schema for an `mcp.json` file. It captures the full surface
+ * This is the server snapshot format, often named `mcp.json`; Agent Plugins'
+ * connection configuration is the separate AgentPluginsMcpConfig contract.
+ * It captures the full surface
  * area of an MCP server: tools, resources, resource templates, and prompts,
  * along with server metadata and transport hints.
  *

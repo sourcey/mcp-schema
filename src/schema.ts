@@ -175,7 +175,9 @@ const transportSchema: JsonSchema = {
     command: { type: "string" },
     args: { type: "array", items: { type: "string" } },
     env: { type: "object" },
+    cwd: { type: "string" },
     url: { type: "string" },
+    headers: { type: "object", additionalProperties: { type: "string" } },
   },
 };
 

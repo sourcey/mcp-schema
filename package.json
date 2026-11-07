@@ -1,6 +1,6 @@
 {
   "name": "mcp-schema",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "TypeScript types and JSON Schema for MCP server specifications. Define, validate, and share static snapshots of Model Context Protocol servers.",
   "type": "module",
   "engines": {
@@ -14,7 +14,12 @@
     "./schema": {
       "types": "./dist/schema.d.ts",
       "import": "./dist/schema.js"
-    }
+    },
+    "./agent-plugins": {
+      "types": "./dist/agent-plugins.d.ts",
+      "import": "./dist/agent-plugins.js"
+    },
+    "./agent-plugins/mcp.schema.json": "./dist/agent-plugins/mcp.schema.json"
   },
   "files": [
     "dist",
@@ -22,15 +27,18 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && node scripts/copy-agent-plugins.mjs",
     "docs:build": "cd docs && sourcey build -o ../.sourcey/docs",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "generate:agent-plugins": "node scripts/generate-agent-plugins.mjs",
+    "check:agent-plugins": "node scripts/generate-agent-plugins.mjs --check"
   },
   "devDependencies": {
     "ajv": "^8.20.0",
+    "json-schema-to-typescript": "16.0.0",
     "sourcey": "^3.8.2",
     "typescript": "^7.0.2",
     "vitest": "^5.0.2"

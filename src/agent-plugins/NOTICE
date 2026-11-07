@@ -1,0 +1,8 @@
+Agent Plugins MCP configuration schema
+Source: https://agent-plugins.org/schemas/1.0.0/mcp.schema.json
+Project: https://github.com/agentplugins/agent-plugins-spec
+Retrieved: 2026-11-07
+
+The unmodified upstream JSON schema and its generated projections are
+distributed under the Apache License, Version 2.0, provided in LICENSE in this
+directory. The remaining mcp-schema package is licensed as stated at its root.
