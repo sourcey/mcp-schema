@@ -51,8 +51,10 @@ The published [canonical schema](https://agent-plugins.org/schemas/1.0.0/mcp.sch
 is the authority in `src/agent-plugins/mcp.schema.json`. Its generated runtime
 export and types must pass `npm run check:agent-plugins` in CI. Run
 `npm run check:agent-plugins -- --upstream` to compare with the canonical online
-schema and detect a newer release on the published specification page. After
-adopting a published specification release, review its normative
+schema and detect a newer release on the published specification page. The
+`Agent Plugins upstream` workflow runs that check every Monday at 03:17 UTC and
+can also be dispatched manually. A new release or schema change fails the check
+for review. After adopting a published specification release, review its normative
 semantic changes in mcp-parser, update the canonical bytes, regenerate with
 `npm run generate:agent-plugins`, and test both packages together. A working
 draft is not automatically a supported release. No schema is downloaded at
